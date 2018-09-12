@@ -1,0 +1,40 @@
+/* Global Styles */
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+.alert {
+	margin-top: 10px;
+}
+
+#group-selector {
+	margin-top: 29px;
+}
+
+#group-selector select {
+	height: 30px;
+	border-color:  #ccc;
+	width: 80%;
+}
+
+#lustopad {
+	text-align: center;
+}
+#theads, #theads1 {
+	font-weight: bold;
+}
+#theads {
+	font-size: 10px;
+	width: 400px;
+}
+
+.formses {
+	width: 300px;
+	text-align: left;
+}
+#firts-form {
+	margin-left: 450px;
+}
+#header-form {
+}
