@@ -33,9 +33,9 @@
       <div class="row" id="sub-header">
         <div class="col-xs-12">
           <ul class="nav nav-tabs"role="tablist">
-            <li role="presentation"><a href="#">Студенти</a></li>
-            <li role="presentation"><a href="#">Відвідування</a></li>
-            <li role="presentation" class="active"><a href="#">Групи</a></li>
+            <li role="presentation"><a href="{% url "home" %}">Студенти</a></li>
+            <li role="presentation"><a href="{% url "journal" %}">Відвідування</a></li>
+            <li role="presentation" class="active"><a href="{% url "groups" %}">Групи</a></li>
           </ul>
         </div>
       </div>
@@ -45,7 +45,7 @@
       <div class="row"id="content-columns">
         <div class="col-xs-12"id="content-column">
           <h2>Групи</h2>
-          <a class="btn btn-primary" href="#">Додати групу</a>
+          <a class="btn btn-primary" href="{% url "add_groups" %}">Додати групу</a>
         </div>
       <!-- End Content Colums -->
 
@@ -62,8 +62,8 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td><a href="#">МтМ-21</a></td>
-            <td><a href="#">Ячменев Олег</a></td>
+            <td><a href="{% url "edit_groups" 21%}">МтМ-21</a></td>
+            <td><a href="{% url "students_edit" 1%}">Ячменев Олег</a></td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle"
@@ -71,9 +71,9 @@
                     Дія <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Редагування</a></li>
-                  <li><a href="#">Відвідування</a></li>
-                  <li><a href="#">Видалення</a></li>
+                  <li><a href="{% url "edit_groups" 21%}">Редагування</a></li>
+                  <li><a href="{% url "journal" %}">Відвідування</a></li>
+                  <li><a href="{% url "delete groups" 21%}">Видалення</a></li>
                 </ul>
               </div>
             </td>
@@ -81,8 +81,8 @@
 
           <tr>
             <td>2</td>
-            <td><a href="#">МтМ-22</a></td>
-            <td><a href="#">Віталій Подоба</a></td>
+            <td><a href="{% url "edit_groups" 22%}">МтМ-22</a></td>
+            <td><a href="{% url "students_edit" 2%}">Віталій Подоба</a></td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle"
@@ -90,9 +90,9 @@
                     Дія <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Редагування</a></li>
-                  <li><a href="#">Відвідування</a></li>
-                  <li><a href="#">Видалення</a></li>
+                  <li><a href="{% url "edit_groups" 22%}">Редагування</a></li>
+                  <li><a href="{% url "journal" %}">Відвідування</a></li>
+                  <li><a href="{% url "delete groups" 22%}">Видалення</a></li>
                 </ul>
               </div>
             </td>
@@ -100,8 +100,8 @@
 
           <tr>
             <td>3</td>
-            <td><a href="#">МтМ-23</a></td>
-            <td><a href="#">Іванов Андрій</a></td>
+            <td><a href="{% url "edit_groups" 23%}">МтМ-23</a></td>
+            <td><a href="{% url "students_edit" 3%}">Іванов Андрій</a></td>
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle"
@@ -109,9 +109,9 @@
                     Дія <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Редагування</a></li>
-                  <li><a href="#">Відвідування</a></li>
-                  <li><a href="#">Видалення</a></li>
+                  <li><a href="{% url "edit_groups" 23%}">Редагування</a></li>
+                  <li><a href="{% url "journal" %}">Відвідування</a></li>
+                  <li><a href="{% url "delete groups" 23%}">Видалення</a></li>
                 </ul>
               </div>
             </td>
@@ -139,7 +139,7 @@
       <div class="row" id="footer">
         <div class="col-xs-12">
           <hr>
-          &copy; 2017 Cервіс Обліку Студентів
+          &copy; 2018 Cервіс Обліку Студентів
         </div>
       </div>
     </div>
