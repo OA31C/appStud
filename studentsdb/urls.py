@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
     # Examples:
@@ -25,3 +26,6 @@ urlpatterns = patterns('',
     url(r'^journal/(?P<sid>\d+)/$', 'students.views.journal_student', name='student_journal'),
     url(r'^journal/update/$', 'students.views.journal_update', name='update_journal'),
 )
+
+# Allows you to connect static files
+urlpatterns += staticfiles_urlpatterns()
