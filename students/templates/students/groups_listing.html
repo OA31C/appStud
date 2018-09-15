@@ -23,8 +23,9 @@
           <strong>Група:</strong>
           <select>
             <option>Усі студенти</option>
-            <option>Мтм-21, Віталій Подоба</option>
-            <option>Мтм-22, Андрій Петров</option>
+          {% for gorup in groups %}
+            <option>{{ gorup.id }}, {{ gorup.monitor }}</option>
+          {% endfor %}
           </select>
         </div>
       </div>
