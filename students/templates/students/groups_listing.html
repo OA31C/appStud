@@ -1,152 +1,101 @@
+{% extends "students/base.html" %}
+
 {% load static from staticfiles %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Групи</title>
-    <meta name="description" value="Система обліку студентів Навчального Закладу">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static "css/main.css" %}">
-  </head>
-  <body>
-    <div class="container">
-      <!-- Start Header -->
-      <div class="row" id="header">
-        <div class="col-xs-8">
-          <h1>Сервіс Обілку Студентів</h1>
-        </div>
-        <div class="col-xs-4" id="group-selector">
-          <strong>Група:</strong>
-          <select>
-            <option>Усі студенти</option>
-          {% for gorup in groups %}
-            <option>{{ gorup.id }}, {{ gorup.monitor }}</option>
-          {% endfor %}
-          </select>
-        </div>
-      </div>
-      <!-- End Header -->
 
-      <!-- Start Sub Header -->
-      <div class="row" id="sub-header">
-        <div class="col-xs-12">
-          <ul class="nav nav-tabs"role="tablist">
-            <li role="presentation"><a href="{% url "home" %}">Студенти</a></li>
-            <li role="presentation"><a href="{% url "journal" %}">Відвідування</a></li>
-            <li role="presentation" class="active"><a href="{% url "groups" %}">Групи</a></li>
-          </ul>
-        </div>
-      </div>
-      <!-- End sub-header-->
+{% block meta_title %}Групи{% endblock meta_title %}
 
-      <!-- Start Content Colums -->
-      <div class="row"id="content-columns">
-        <div class="col-xs-12"id="content-column">
-          <h2>Групи</h2>
-          <a class="btn btn-primary" href="{% url "add_groups" %}">Додати групу</a>
-        </div>
-      <!-- End Content Colums -->
+{% block titile %}Групи{% endblock titile %}
 
-      <!-- Start Student Listing -->
-      <table class="table table-striped">
-        <thead id="theads1">
-          <tr>
-            <td>#</td>
-            <td><a href="#">Назва &uarr;</a></td>
-            <td><a href="#">Староста</a></td>
-            <td>Дії</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td><a href="{% url "edit_groups" 21%}">МтМ-21</a></td>
-            <td><a href="{% url "students_edit" 1%}">Ячменев Олег</a></td>
-            <td>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle"
-                  data-toggle="dropdown">
-                    Дія <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="{% url "edit_groups" 21%}">Редагування</a></li>
-                  <li><a href="{% url "journal" %}">Відвідування</a></li>
-                  <li><a href="{% url "delete groups" 21%}">Видалення</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td><a href="{% url "edit_groups" 22%}">МтМ-22</a></td>
-            <td><a href="{% url "students_edit" 2%}">Віталій Подоба</a></td>
-            <td>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle"
-                  data-toggle="dropdown">
-                    Дія <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="{% url "edit_groups" 22%}">Редагування</a></li>
-                  <li><a href="{% url "journal" %}">Відвідування</a></li>
-                  <li><a href="{% url "delete groups" 22%}">Видалення</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td>3</td>
-            <td><a href="{% url "edit_groups" 23%}">МтМ-23</a></td>
-            <td><a href="{% url "students_edit" 3%}">Іванов Андрій</a></td>
-            <td>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle"
-                  data-toggle="dropdown">
-                    Дія <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="{% url "edit_groups" 23%}">Редагування</a></li>
-                  <li><a href="{% url "journal" %}">Відвідування</a></li>
-                  <li><a href="{% url "delete groups" 23%}">Видалення</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- End Studing Listing -->
-      </div>
-      <!-- End Colums -->
-
-      <!-- Start Navigation -->
-      <div class="">
-          <nav aria-label="...">
-            <ul class="pagination">
-              <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-              <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">1</span></a></li>
-              <li class="active"><a href="#">2 <span class="sr-only">(current)</span></a></li>
-              <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">Далі</span></a></li>
-          </ul>
-      </nav>
-        </div>
-      <!-- End Navigation -->
-
-      <!-- Start Footer -->
-      <div class="row" id="footer">
-        <div class="col-xs-12">
-          <hr>
-          &copy; 2018 Cервіс Обліку Студентів
-        </div>
-      </div>
+{% block content %}
+  <!-- Start Content Colums -->
+  <div class="row"id="content-columns">
+    <div class="col-xs-12"id="content-column">
+      <a class="btn btn-primary" href="{% url "add_groups" %}">Додати групу</a>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  </body>
-</html>
+  <!-- End Content Colums -->
+
+  <!-- Start Student Listing -->
+  <table class="table table-striped">
+    <thead id="theads1">
+      <tr>
+        <td>#</td>
+        <td><a href="#">Назва &uarr;</a></td>
+        <td><a href="#">Староста</a></td>
+        <td>Дії</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><a href="{% url "edit_groups" 21%}">МтМ-21</a></td>
+        <td><a href="{% url "students_edit" 1%}">Ячменев Олег</a></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown">
+                Дія <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{% url "edit_groups" 21%}">Редагування</a></li>
+              <li><a href="{% url "journal" %}">Відвідування</a></li>
+              <li><a href="{% url "delete groups" 21%}">Видалення</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td><a href="{% url "edit_groups" 22%}">МтМ-22</a></td>
+        <td><a href="{% url "students_edit" 2%}">Віталій Подоба</a></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown">
+                Дія <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{% url "edit_groups" 22%}">Редагування</a></li>
+              <li><a href="{% url "journal" %}">Відвідування</a></li>
+              <li><a href="{% url "delete groups" 22%}">Видалення</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td><a href="{% url "edit_groups" 23%}">МтМ-23</a></td>
+        <td><a href="{% url "students_edit" 3%}">Іванов Андрій</a></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown">
+                Дія <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{% url "edit_groups" 23%}">Редагування</a></li>
+              <li><a href="{% url "journal" %}">Відвідування</a></li>
+              <li><a href="{% url "delete groups" 23%}">Видалення</a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- End Studing Listing -->
+  </div>
+  <!-- End Colums -->
+
+  <!-- Start Navigation -->
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">1</span></a></li>
+          <li class="active"><a href="#">2 <span class="sr-only">(current)</span></a></li>
+          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">Далі</span></a></li>
+      </ul>
+  </nav>
+  <!-- End Navigation -->
+{% endblock content %}
+
