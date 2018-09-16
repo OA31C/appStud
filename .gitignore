@@ -2,3 +2,4 @@
 *.sqlite3
 .idea
 db.sqlite3
+students/migrations/0001_initial.py
