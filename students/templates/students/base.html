@@ -27,7 +27,7 @@
           <select>
             <option>Усі студенти</option>
             {% for group in groups %}
-            <option>{{ group.id }}, {{ group.monitor }}</option>
+            <option>{{ group.title }}, {{ group.leader }}</option>
             {% endfor %}
           </select>
         </div>
