@@ -3,3 +3,4 @@
 .idea
 db.sqlite3
 students/migrations/0001_initial.py
+demo_data.json
