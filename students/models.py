@@ -33,6 +33,7 @@ class Student(models.Model):
         null=True)
 
     photo = models.ImageField(
+        upload_to='img/',
         blank=True,
         verbose_name=u"Фото")
 
