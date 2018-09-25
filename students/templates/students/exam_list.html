@@ -1,0 +1,29 @@
+{% extends "students/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Список іспитів{% endblock meta_title %}
+
+{% block titile %}Іспити{% endblock titile %}
+
+{% block content %}
+  <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><a href="#">Дата і час проведення</a></th>
+                <th><a href="#">Назва предмету</a></th>
+                <th><a href="#">Викладач</a></th>
+                <th><a href="#">Група</a></th>
+        </thead>
+    <tbody>
+    {% for exam in exams %}
+    <tr>
+        <td>{{ exam.date_and_time }}</td>
+        <td><a href="#">{{ exam.subject }}</a></td>
+        <td><a>{{ exam.teacher }}</a></td>
+        <td><a href="#">{{ exam.exam_group }}</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

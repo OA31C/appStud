@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 from django.http import HttpResponse
-from ..models import Group
+from ..models.groups import Group
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Groups
@@ -33,7 +33,7 @@ def groups_add(request):
     return HttpResponse('<h1>Groups Add</h1>')
 
 def groups_edit(request, sid):
-    return HttpResponse('<h1>Groups Edit</h1 %s>' % sid)
+    return HttpResponse('<h1>Groups Edit %s </h1>' % sid)
 
 def groups_delete(request, sid):
-    return HttpResponse('<h1>Groups Delete</h1> %sid </h1>' % sid)
+    return HttpResponse('<h1>Groups Delete %sid</h1>' % sid)

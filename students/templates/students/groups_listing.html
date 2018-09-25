@@ -8,8 +8,8 @@
 
 {% block content %}
   <!-- Start Content Colums -->
-  <div class="row"id="content-columns">
-    <div class="col-xs-12"id="content-column">
+  <div class="row" id="content-columns">
+    <div class="col-xs-12" id="content-column">
       <a class="btn btn-primary" href="{% url "add_groups" %}">Додати групу</a>
     </div>
   <!-- End Content Colums -->
@@ -17,11 +17,12 @@
   <!-- Start Student Listing -->
   <table class="table table-striped">
     {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-    <thead id="theads1">
+    <thead id="theads_groups">
       <tr>
         <td>#</td>
         <td>
-            <a href="{% url "groups" %}?order_by=title{% if order_by == 'title' and reverse != '1' %}&amp;reverse=1{% endif %}">
+            <a href="{% url "groups" %}?order_by=title{% if order_by == 'title' and reverse != '1' %}
+            &amp;reverse=1{% endif %}">
                 Назва
                 {% if order_by == 'title' and reverse != '1' %}&uarr;
                 {% elif order_by == 'title' and reverse == '1' %}&darr;
@@ -29,7 +30,8 @@
             </a>
         </td>
         <td>
-            <a href="{% url "groups" %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}&amp;reverse=1{% endif %}">
+            <a href="{% url "groups" %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}
+             &amp;reverse=1{% endif %}">
                 Староста
                 {% if order_by == 'leader' and reverse != '1' %}&uarr;
                 {% elif order_by == 'leader' and reverse == '1' %}&darr;
@@ -53,9 +55,9 @@
                 Дія <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="{% url "edit_groups" 21%}">Редагування</a></li>
+              <li><a href="{% url "edit_groups" group.id %}">Редагування</a></li>
               <li><a href="{% url "journal" %}">Відвідування</a></li>
-              <li><a href="{% url "delete groups" 21%}">Видалення</a></li>
+              <li><a href="{% url "delete groups" group.id %}">Видалення</a></li>
             </ul>
           </div>
         </td>

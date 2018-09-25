@@ -25,9 +25,9 @@
         <div class="col-xs-4" id="group-selector">
           <strong>Група:</strong>
           <select>
-            <option>Усі студенти</option>
+            <option value="">Усі студенти</option>
             {% for group in groups %}
-            <option>{{ group.title }}, {{ group.leader }}</option>
+            <option value="{{ group.title }}">{{ group.title }}, {{ group.leader }}</option>
             {% endfor %}
           </select>
         </div>
@@ -41,6 +41,7 @@
             <li role="presentation" {% if request.path == '/' %}class="active"{% endif %}><a href="{% url "home" %}">Студенти</a></li>
             <li role="presentation" {% if '/journal' in request.path %}class="active"{% endif %}><a href="{% url "journal" %}">Відвідування</a></li>
             <li role="presentation" {% if '/groups' in request.path %}class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
+            <li role="presentation" {% if '/exam' in request.path %}class="active" {% endif %}><a href="{% url "exam" %}">Іспити</a></li>
           </ul>
         </div>
       </div>

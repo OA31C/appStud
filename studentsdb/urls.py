@@ -25,6 +25,9 @@ urlpatterns = patterns('',
     url(r'^journal/$', 'students.views.journal.journal_list', name='journal'),
     url(r'^journal/(?P<sid>\d+)/$', 'students.views.journal.journal_student', name='student_journal'),
     url(r'^journal/update/$', 'students.views.journal.journal_update', name='update_journal'),
+
+    # Exam
+    url(r'^exam/$', 'students.views.exam.exam_list', name="exam"),
 )
 
 # Allows you to connect static files
