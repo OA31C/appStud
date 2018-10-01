@@ -38,3 +38,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 #header-form {
 }
+
+/* Form Styles */
+.has-error .error {
+	color: #a94442;
+}
