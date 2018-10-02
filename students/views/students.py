@@ -123,11 +123,11 @@ class StudentUpdateView(UpdateView):
     # success_url = '/'
     @property
     def success_url(self):
-        return reverse('home')
+        return u"%s?status_message=Студента успішно збережено!" % reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(u"%s?status_message=Редагування студента відмінено!" % reverse('home'))
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
