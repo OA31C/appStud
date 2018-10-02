@@ -6,6 +6,8 @@ from ..models.students import Student
 from ..models.groups import Group
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import UpdateView
+from django.forms import ModelForm
 
 # Views for Students
 def students_list(request):
@@ -70,9 +72,12 @@ def students_add(request):
                     errors['birthday'] = u"Введіть коректний формат дати"
                 else:
                     data['birthday'] = birthday
+
             ticket = request.POST.get('ticket', '').strip()
             if not ticket:
                 errors['ticket'] = u"Номер об'єкта є обов'язковим"
+            else:
+                data['ticket'] = ticket
 
             student_group = request.POST.get('student_group', '').strip()
             if not student_group:
@@ -100,14 +105,31 @@ def students_add(request):
                               {'groups': Group.objects.all().order_by('title'),
                                'errors': errors})
 
-        elif request.POST.get('cancel_button') is None:
+        elif request.POST.get('cancel_button') is not None:
             return HttpResponseRedirect(reverse('home'))
     else:
         return render(request, 'students/students_add.html',
                       {'groups': Group.objects.all().order_by('title')})
 
-def students_edit(request, sid):
-    return HttpResponse('<h1>Edit Students %s </h1>' % sid)
+# class StudentUpdateForm(ModelForm):
+#     class Meta:
+#         model = Student
+
+class StudentUpdateView(UpdateView):
+    model = Student
+    template_name = 'students/students_edit.html'
+    # form_class = StudentUpdateFrom
+
+    # success_url = '/'
+    @property
+    def success_url(self):
+        return reverse('home')
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('cancel_button'):
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
 def students_delete(request, sid):
     return HttpResponse('<h1>Delete students %s</h1>' % sid)

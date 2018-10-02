@@ -49,11 +49,11 @@
       <!-- Start Content Columns -->
       <div class="row" id="content-columns">
         <div class="col-xs-12" id="content-column">
-          {% comment "Not used alert so far" %}
+        {% if request.GET.status_message %}
           <div class="alert alert-warning" role="alert">
           Студент успішно доданий
           </div>
-          {% endcomment %}
+        {% endif %}
           <h2>{% block titile %}{% endblock titile %}</h2>
             {% block content %}{% endblock content %}
         </div>
