@@ -10,9 +10,27 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 from django.conf import global_settings
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+ADMIN_EMAIL = 'admin@studentsdb.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'OA3IC.QV@gmail.com'
+EMAIL_HOST_PASSWORD = 'maxim_1997'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 PORTAL_URL = 'http://localhost:8000'
+
+# email settings
+# please, set here you smtp server details and your admin email
+ADMIN_EMAIL = 'adm1n@studentsdb.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = 'OA3IC.QV@gmail.com'
+EMAIL_HOST_PASSWORD = 'maxim_1997'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -27,9 +45,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +55,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'students',
 )
 
