@@ -1,4 +1,4 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 {% load static from staticfiles %}
 
@@ -7,12 +7,9 @@
 {% block titile %}Групи{% endblock titile %}
 
 {% block content %}
-  <!-- Start Content Colums -->
-  <div class="row" id="content-columns">
-    <div class="col-xs-12" id="content-column">
-      <a class="btn btn-primary" href="{% url "add_groups" %}">Додати групу</a>
-    </div>
-  <!-- End Content Colums -->
+  <!-- Start Content Columns -->
+      <a class="btn btn-primary" href="{% url "add_groups" %}">Додати Групу</a>
+  <!-- End Content Columns -->
 
   <!-- Start Student Listing -->
   <table class="table table-striped">
@@ -66,7 +63,6 @@
     </tbody>
   </table>
   <!-- End Groups Listing -->
-  </div>
   <!-- End Columns -->
 
   <!-- Start Navigation -->

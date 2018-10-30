@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Видалити Групу{% endblock meta_title %}
+
+{% block titile %}Видалити Групу{% endblock titile %}
+
+{% block content %}
+    <form action="{% url 'delete groups' object.id %}" method="post">
+        {% csrf_token %}
+        <p>Ви дійсно хочете видалити групу "{{ object }}"?</p>
+        <input type="submit" value="Так" name="delete_button" class="btn btn-danger"><br><br>
+    </form>
+{% endblock %}

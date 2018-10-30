@@ -1,31 +1,20 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 {% load static from staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block meta_title %}Редагувати Студента{% endblock meta_title %}
 
-{% block titile %}Редагувати Студента{% endblock titile %}
+{% block title %}Редагувати Студента{% endblock title %}
+
+{% block status_message %}
+{% if form.errors %}
+<div class="alert alert-warning" role="alert">Будь-ласка, виправте наступні помилки</div>
+{% endif %}
+{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-xs-6">
-        <form action="#" method="post"
-          enctype="multipart/form-data"
-          role="form">
 
-        {% csrf_token %}
+{% crispy form %}
 
-
-        {{ form.as_p }}
-
-    <input type="submit"
-           value="Зберегти"
-           name="add_button"
-           class="btn btn-primary">
-    <button type="submit" name="cancel_button" value="Скасувати"
-            class="btn link">Скасувати</button>
-
-    </form>
-    </div>
-</div>
-{% endblock %}
+{% endblock content %}

@@ -1,4 +1,4 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 {% load static from staticfiles %}
 
@@ -7,6 +7,9 @@
 {% block titile %}Іспити{% endblock titile %}
 
 {% block content %}
+
+  <a class="btn btn-primary" href="{% url "exam_add" %}">Додати Іспит</a>
+
   <table class="table table-striped">
         <thead>
             <tr>
@@ -14,6 +17,7 @@
                 <th><a href="#">Назва предмету</a></th>
                 <th><a href="#">Викладач</a></th>
                 <th><a href="#">Група</a></th>
+                <th>Дії</th>
         </thead>
     <tbody>
     {% for exam in exams %}
@@ -22,6 +26,18 @@
         <td><a href="#">{{ exam.subject }}</a></td>
         <td><a>{{ exam.teacher }}</a></td>
         <td><a href="#">{{ exam.exam_group }}</a></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown">
+                Дія <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{% url "edit_exam" exam.id %}">Редагування</a></li>
+              <li><a href="{% url "delete_exam" exam.id %}">Видалення</a></li>
+            </ul>
+          </div>
+        </td>
     </tr>
     {% endfor %}
     </tbody>

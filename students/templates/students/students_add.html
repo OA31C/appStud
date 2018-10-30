@@ -1,10 +1,10 @@
-{% extends "students/base.html" %}
+{% extends "base.html" %}
 
 {% load static from staticfiles %}
 
 {% block meta_title %}Додати Студента{% endblock meta_title %}
 
-{% block title %}Додати Студента{% endblock title %}
+{% block titile %}Додати Студента{% endblock titile %}
 
 {% block status_message %}
   {% if errors %}
@@ -15,9 +15,9 @@
 {% endblock status_message %}
 
 {% block content %}
-
 <form action="." method="post" enctype="multipart/form-data"
-      role="form" class="form-horizontal">
+      role="form" class="form-horizontal"
+      id="id-student-form">
   {% csrf_token %}
 
   <div class="form-group {% if errors.first_name %}has-error{% endif %}">
@@ -25,7 +25,8 @@
     <div class="col-sm-10">
       <input type="text" value="{{ request.POST.first_name }}"
              name="first_name" id="first_name"
-             class="form-control" />
+             class="form-control"
+             placeholder="Введіть Ваше ім'я"/>
       <span class="help-block">{{ errors.first_name }}</span>
     </div>
   </div>
@@ -34,17 +35,19 @@
     <div class="col-sm-10">
       <input type="text" value="{{ request.POST.first_name }}"
              name="last_name" id="last_name"
-             placeholder="Введіть ваше прізвище"
-             class="form-control" />
+             class="form-control"
+             placeholder="Введіть Ваше прізвище"/>
       <span class="help-block">{{ errors.last_name }}</span>
     </div>
   </div>
+
   <div class="form-group {% if errors.middle_name %}has-error{% endif %}">
     <label for="middle_name"class="col-sm-2 control-label">По-батькові</label>
     <div class="col-sm-10">
       <input type="text" value="{{ request.POST.first_name }}"
              name="middle_name" id="middle_name"
-             class="form-control" />
+             class="form-control"
+             placeholder="По-батькові"/>
       <span class="help-block">{{ errors.middle_name }}</span>
     </div>
   </div>
@@ -71,12 +74,13 @@
     <div class="col-sm-10">
       <input type="text" value="{{ request.POST.ticket }}"
              name="ticket" id="ticket"
-             class="form-control" />
+             class="form-control"
+             placeholder="Введіть Ваш номер білету"/>
       <span class="help-block">{{ errors.ticket }}</span>
     </div>
   </div>
   <div class="form-group {% if errors.student_group %}has-error{% endif %}">
-    <label for="student_group"class="col-sm-2 control-label">Група*</label>
+    <label for="student_group" class="col-sm-2 control-label">Група*</label>
     <div class="col-sm-10">
       <select name="student_group" id="student_group"
               class="form-control">
@@ -91,20 +95,23 @@
   <div class="form-group {% if errors.notes %}has-error{% endif %}">
     <label for="notes" class="col-sm-2 control-label">Додаткові Нотатки</label>
     <div class="col-sm-10">
-      <textarea name="notes" id="notes" class="form-control">{{ request.POST.notes }}</textarea>
+      <textarea name="notes"
+                id="notes"
+                class="form-control"
+                placeholder="Тут можна написати про себе і свої інтереси">{{ request.POST.notes }}</textarea>
       <span class="help-block">{{ errors.notes }}</span>
     </div>
   </div>
+
   <div class="form-group">
     <label class="col-sm-2 control-label"></label>
     <div class="col-sm-10">
       <input type="submit" value="Додати" name="add_button"
-             class="btn btn-primary" />
+             class="btn btn-primary" id="button_add"/>
       <button type="submit" name="cancel_button"
               class="btn btn-link">Скасувати</button>
     </div>
   </div>
 </form>
-
 
 {% endblock content %}

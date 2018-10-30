@@ -127,7 +127,7 @@ class StudentUpdateForm(ModelForm):
 
         # set form tag attributes
         self.helper.form_action = reverse('students_edit',
-            kwargs={'pk': kwargs['instance'].id})
+                                          kwargs={'pk': kwargs['instance'].id})
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
 
@@ -142,7 +142,6 @@ class StudentUpdateForm(ModelForm):
             Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
-
 
 
 class StudentUpdateView(UpdateView):
@@ -172,7 +171,3 @@ class StudentDeleteView(DeleteView):
     @property
     def success_url(self):
         return u"%s?status_message=Студента успішно видалено!" % reverse('home')
-
-
-def students_delete(request, sid):
-    return HttpResponse('<h1>Delete students %s</h1>' % sid)

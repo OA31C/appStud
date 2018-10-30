@@ -2,6 +2,9 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from students.views.students import StudentUpdateView, StudentDeleteView
+from students.views.journal import JournalView
+from students.views.groups import GroupUpdateView, GroupDeleteView
+from students.views.exam import ExamUpdateView, ExamDeleteView
 
 urlpatterns = patterns('',
     # Examples:
@@ -19,16 +22,19 @@ urlpatterns = patterns('',
     # Groups
     url(r'^groups/$', 'students.views.groups.groups_list', name='groups'),
     url(r'^groups/add/$', 'students.views.groups.groups_add', name='add_groups'),
-    url(r'^groups/(?P<sid>\d+)/edit/$', 'students.views.groups.groups_edit', name='edit_groups'),
-    url(r'groups/(?P<sid>\d+)/delete/$', 'students.views.groups.groups_delete', name='delete groups'),
+    url(r'^groups/(?P<pk>\d+)/edit/$', GroupUpdateView.as_view(), name='edit_groups'),
+    url(r'groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='delete groups'),
 
     # Journal
-    url(r'^journal/$', 'students.views.journal.journal_list', name='journal'),
-    url(r'^journal/(?P<sid>\d+)/$', 'students.views.journal.journal_student', name='student_journal'),
-    url(r'^journal/update/$', 'students.views.journal.journal_update', name='update_journal'),
+    url(r'^journal/$', JournalView.as_view(), name='journal'),
+    url(r'^journal/(?P<sid>\d+)/$', JournalView.as_view(), name='student_journal'),
+    url(r'^journal/update/$', JournalView.as_view(), name='update_journal'),
 
     # Exam
     url(r'^exam/$', 'students.views.exam.exam_list', name="exam"),
+    url(r'^exam/add/$', 'students.views.exam.exam_add', name='exam_add'),
+    url(r'^exam/(?P<pk>\d+)/edit/$', ExamUpdateView.as_view(), name='edit_exam'),
+    url(r'^exam/(?P<pk>\d+)/delete/$', ExamDeleteView.as_view(), name='delete_exam'),
 
     # Contact Admin Form
     url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin', name='contact_admin')

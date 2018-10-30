@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Редагувати Іспит{% endblock meta_title %}
+
+{% block titile %}Редагувати Іспит{% endblock titile %}
+
+{% block content %}
+ {% crispy form %}
+{% endblock %}
