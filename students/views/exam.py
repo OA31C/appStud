@@ -109,10 +109,10 @@ class ExamUpdateForm(ModelForm):
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
 
+
 class ExamUpdateView(UpdateView):
     model = Exam
     template_name = 'exam/exam_edit.html'
-    form_class = ExamUpdateForm
 
     # success_url = '/'
     @property
@@ -121,9 +121,10 @@ class ExamUpdateView(UpdateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u"%s?status_message=Редагування іспита відмінено!" % reverse('exam'))
+            return HttpResponseRedirect(u"%s?status_message=Редагування групи відмінено!" % reverse('exam'))
         else:
             return super(ExamUpdateView, self).post(request, *args, **kwargs)
+
 
 class ExamDeleteView(DeleteView):
     model = Exam

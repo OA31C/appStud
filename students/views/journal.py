@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, date
+from django.http import JsonResponse
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 from django.core.urlresolvers import reverse
@@ -7,6 +8,7 @@ from django.views.generic.base import TemplateView
 from ..models.students import Student
 from ..models.journal import MonthJournal
 from ..util import paginate
+
 
 class JournalView(TemplateView):
     template_name = 'journal/journal_listing.html'
@@ -43,8 +45,11 @@ class JournalView(TemplateView):
                                     'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
                                    for d in range(1, number_of_days + 1)]
 
-        # витягуємо усіх студентів посортованих по
-        queryset = Student.objects.all().order_by('last_name')
+        # display journal for one student
+        if kwargs.get('pk'):
+            queryset = [Student.objects.get(pk=kwargs['pk'])]
+        else:
+            queryset = Student.objects.all().order_by('last_name')
 
         # це адреса для посту AJAX запиту, як бачите, ми
         # робитимемо його на цю ж в'юшку; в'юшка журналу
@@ -74,15 +79,35 @@ class JournalView(TemplateView):
                 })
 
                 # набиваємо усі решту даних студента
-                students.append({
-                    'fullname': u"%s %s" % (student.last_name, student.first_name),
-                    'days': days,
-                    'id': student.id,
-                    'update_url': update_url,
-                })
+            students.append({
+                'fullname': u"%s %s" % (student.last_name, student.first_name),
+                'days': days,
+                'id': student.id,
+                'update_url': update_url,
+            })
 
         # застосовуємо піганацію до списку студентів
         context = paginate(students, 10, self.request, context,
                 var_name='students')
         return context
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+
+        # prepare student, dates and presence data
+        current_date = datetime.strptime(data['date'], '%Y-%m-%d').date()
+        month = date(current_date.year, current_date.month, 1)
+        present = data['present'] and True or False
+        student = Student.objects.get(pk=data['pk'])
+
+        # get or create journal object for given student and month
+        journal = MonthJournal.objects.get_or_create(student=student,
+                                                     date=month)[0]
+
+        # set new presence on journal for given student and save result
+        setattr(journal, 'present_day%d' % current_date.day, present)
+        journal.save()
+
+        # return success status
+        return JsonResponse({'status': 'success'})
 

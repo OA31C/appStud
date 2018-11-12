@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-
+from ..util import paginate, get_current_group
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -14,9 +14,16 @@ from crispy_forms.bootstrap import FormActions
 
 from ..models import Student, Group
 
+
 # Views for Students
 def students_list(request):
-    students = Student.objects.all()
+    # check if we need to show only one group of students
+    current_group = get_current_group(request)
+    if current_group:
+        students = Student.objects.filter(student_group=current_group)
+    else:
+        # otherwise show all students
+        students = Student.objects.all()
 
     # try to order students list
     order_by = request.GET.get('order_by', '')
@@ -25,21 +32,10 @@ def students_list(request):
         if request.GET.get('reverse', '') == '1':
             students = students.reverse()
 
-    paginator = Paginator(students, 3)
-    page = request.GET.get('page')
-    try:
-        students = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page
-        students = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver
-        # last page of results
-        students = paginator.page(paginator.num_pages)
+    context = paginate(students, 3, request, {}, var_name='students')
 
+    return render(request, 'students/students_listing.html', context)
 
-    groups = Group.objects.all()
-    return render(request, 'students/students_listing.html', {'students': students, 'groups': groups})
 
 def students_add(request):
     if request.method == "POST":
@@ -116,6 +112,7 @@ def students_add(request):
         return render(request, 'students/students_add.html',
                       {'groups': Group.objects.all().order_by('title')})
 
+
 class StudentUpdateForm(ModelForm):
     class Meta:
         model = Student
@@ -152,14 +149,13 @@ class StudentUpdateView(UpdateView):
     # success_url = '/'
     @property
     def success_url(self):
-        return u"%s?status_message=Студента успішно збережено!" % reverse('home')
+        return u"%s?status_message=Групу успішно збережено!" % reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u"%s?status_message=Редагування студента відмінено!" % reverse('home'))
+            return HttpResponseRedirect(u"%s?status_message=Редагування групи відмінено!" % reverse('home'))
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
-
 
 
 class StudentDeleteView(DeleteView):

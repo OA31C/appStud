@@ -26,10 +26,7 @@ urlpatterns = patterns('',
     url(r'groups/(?P<pk>\d+)/delete/$', GroupDeleteView.as_view(), name='delete groups'),
 
     # Journal
-    url(r'^journal/$', JournalView.as_view(), name='journal'),
-    url(r'^journal/(?P<sid>\d+)/$', JournalView.as_view(), name='student_journal'),
-    url(r'^journal/update/$', JournalView.as_view(), name='update_journal'),
-
+    url(r'^journal/(?P<pk>\d+)?/?$', JournalView.as_view(), name='journal'),
     # Exam
     url(r'^exam/$', 'students.views.exam.exam_list', name="exam"),
     url(r'^exam/add/$', 'students.views.exam.exam_add', name='exam_add'),

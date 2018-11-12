@@ -12,6 +12,8 @@ from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
 
 # Groups
+
+
 def groups_list(request):
     groups = Group.objects.all()
 
@@ -35,6 +37,7 @@ def groups_list(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         groups = paginator.page(paginator.num_pages)
     return render(request, 'group/groups_listing.html', {'groups': groups})
+
 
 def groups_add(request):
 
@@ -64,6 +67,7 @@ def groups_add(request):
     else:
         return render(request, 'group/groups_add.html', {'students': Student.objects.all()})
 
+
 class GroupUpdateForm(ModelForm):
     class Meta:
         model = Group
@@ -91,6 +95,7 @@ class GroupUpdateForm(ModelForm):
             Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
         )
 
+
 class GroupUpdateView(UpdateView):
     model = Group
     template_name = 'group/groups_edit.html'
@@ -106,6 +111,7 @@ class GroupUpdateView(UpdateView):
             return HttpResponseRedirect(u"%s?status_message=Редагування групи відмінено!" % reverse('groups'))
         else:
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
+
 
 class GroupDeleteView(DeleteView):
     model = Group
