@@ -149,11 +149,11 @@ class StudentUpdateView(UpdateView):
     # success_url = '/'
     @property
     def success_url(self):
-        return u"%s?status_message=Групу успішно збережено!" % reverse('home')
+        return u"%s?status_message=Студента успішно збережено!" % reverse('home')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u"%s?status_message=Редагування групи відмінено!" % reverse('home'))
+            return HttpResponseRedirect(u"%s?status_message=Редагування студента відмінено!" % reverse('home'))
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 

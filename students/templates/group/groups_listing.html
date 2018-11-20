@@ -44,7 +44,7 @@
       <tr>
         <td>{{ forloop.counter }}</td>
         <td><a href="{% url "edit_groups" 21%}">{{ group.title }}</a></td>
-        <td><a href="{% url "students_edit" 1%}">{{ group.leader }}</a></td>
+        <td><a href="{% url "students_edit" 1%}" class="student-edit-form-link">{{ group.leader }}</a></td>
         <td>
           <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle"
