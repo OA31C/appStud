@@ -91,30 +91,31 @@ DATABASES = {
     }
 }
 
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
-
-LANGUAGE_CODE = 'Ru-ru'
-
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
 
+# default language
+LANGUAGE_CODE = 'uk'
+
+# enable Django localization
 USE_L10N = True
 
+# use zone-aware date objects
 USE_TZ = True
+
+# default timezone
+TIME_ZONE = 'UTC'
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'students/static')
 MEDIA_URL = 'static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'students/static', 'media')
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request",
-                                                                             "studentsdb.context_processors.students_proc",
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request",                                                                             "studentsdb.context_processors.students_proc",
                                                                              "students.context_processor.groups_processor",)
 
 LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')

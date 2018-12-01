@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-01 02:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/base.html:7 templates/base.html.py:8 templates/base.html.py:29
+#: templates/base.html:77
+msgid "Students Accounting Service"
+msgstr ""
+
+#: templates/base.html:32 templates/base.html.py:49
+msgid "Groups"
+msgstr ""
+
+#: templates/base.html:34
+msgid "All Students"
+msgstr ""
+
+#: templates/base.html:47 templates/students/students_listing.html:6
+msgid "Students"
+msgstr ""
+
+#: templates/base.html:48 templates/students/students_listing.html:80
+msgid "Journal"
+msgstr ""
+
+#: templates/base.html:50
+msgid "Exam"
+msgstr ""
+
+#: templates/base.html:51
+msgid "Contact"
+msgstr ""
+
+#: templates/students/students_listing.html:8
+msgid "Students List"
+msgstr ""
+
+#: templates/students/students_listing.html:11
+msgid "Add Student"
+msgstr ""
+
+#: templates/students/students_listing.html:27
+msgid "Photo"
+msgstr ""
+
+#: templates/students/students_listing.html:30
+msgid "Last Name"
+msgstr ""
+
+#: templates/students/students_listing.html:37
+msgid "First Name"
+msgstr ""
+
+#: templates/students/students_listing.html:43
+msgid "№ Ticket"
+msgstr ""
+
+#: templates/students/students_listing.html:49
+msgid "Actions"
+msgstr ""
+
+#: templates/students/students_listing.html:79
+msgid "Edit"
+msgstr ""
+
+#: templates/students/students_listing.html:81
+msgid "Delete"
+msgstr ""
