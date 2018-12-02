@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from datetime import datetime
 
 # Create your models here.
@@ -9,29 +10,29 @@ class Exam(models.Model):
     """Student Model"""
 
     class Meta(object):
-        verbose_name = u"Іспити"
-        verbose_name_plural = u"Іспити"
+        verbose_name = _(u"Exam")
+        verbose_name_plural = _(u"Exam")
 
     date_and_time = models.DateTimeField(
         blank=False,
-        verbose_name=u"Дата і час проведення")
+        verbose_name=_(u"Date and time of the event"))
 
     subject = models.CharField(
         max_length=256,
         blank=False,
-        verbose_name=u"Назва предмету")
+        verbose_name=_(u"Name subject"))
 
     teacher = models.CharField(
         max_length=256,
         blank=False,
-        verbose_name=u"Викладач")
+        verbose_name=_(u"Teacher"))
 
     notes = models.TextField(
         blank=True,
-        verbose_name=u"Додаткові нотатки")
+        verbose_name=_(u"Extra notes"))
 
     exam_group = models.ForeignKey('Group',
-        verbose_name=u"Група",
+        verbose_name=_(u"Group"),
         blank=False,
         null=True,
         on_delete=models.PROTECT)

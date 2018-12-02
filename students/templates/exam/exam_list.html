@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% load static from staticfiles %}
 
-{% block meta_title %}Список іспитів{% endblock meta_title %}
+{% block meta_title %}{% trans "List of exams" %}{% endblock meta_title %}
 
-{% block titile %}Іспити{% endblock titile %}
+{% block titile %}{% trans "List of exams" %}{% endblock titile %}
 
 {% block content %}
 
-  <a class="btn btn-primary" href="{% url "exam_add" %}">Додати Іспит</a>
+  <a class="btn btn-primary" href="{% url "exam_add" %}">{% trans "Add Exam" %}</a>
 
   <table class="table table-striped">
         <thead>
             <tr>
-                <th><a href="#">Дата і час проведення</a></th>
-                <th><a href="#">Назва предмету</a></th>
-                <th><a href="#">Викладач</a></th>
-                <th><a href="#">Група</a></th>
-                <th>Дії</th>
+                <th><a href="#">{% trans "Date and time of the event" %}</a></th>
+                <th><a href="#">{% trans "Title of subject" %}</a></th>
+                <th><a href="#">{% trans "Teacher" %}</a></th>
+                <th><a href="#">{% trans "Group" %}</a></th>
+                <th>{% trans "Actions" %}</th>
         </thead>
     <tbody>
     {% for exam in exams %}
@@ -30,11 +32,11 @@
           <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle"
               data-toggle="dropdown">
-                Дія <span class="caret"></span>
+                {% trans "Action" %} <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="{% url "edit_exam" exam.id %}">Редагування</a></li>
-              <li><a href="{% url "delete_exam" exam.id %}">Видалення</a></li>
+              <li><a href="{% url "edit_exam" exam.id %}">{% trans "Edit" %}</a></li>
+              <li><a href="{% url "delete_exam" exam.id %}">{% trans "Delete" %}</a></li>
             </ul>
           </div>
         </td>

@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+
 {% load static from staticfiles %}
 
-{% block meta_title %}Додати Іспит{% endblock meta_title %}
+{% block meta_title %}{% trans "Add Exam" %}{% endblock meta_title %}
 
-{% block titile %}Додати Іспит{% endblock titile %}
+{% block titile %}{% trans "Add Exam" %}{% endblock titile %}
 
 {% block content %}
 
@@ -14,7 +16,7 @@
     {% csrf_token %}
 
         <div class="form-group">
-            <label for="date_and_time" class="col-sm-2 control-label">Дата і час*</label>
+            <label for="date_and_time" class="col-sm-2 control-label">{% trans "Date and time" %}*</label>
 
             <div class="col-sm-10">
                 <input type="text" value="{{ request.POST.date_and_time }}"
@@ -26,35 +28,35 @@
         </div>
 
         <div class="form-group">
-            <label for="subject" class="col-sm-2 control-label">Назва*</label>
+            <label for="subject" class="col-sm-2 control-label">{% trans "Name subject" %}*</label>
 
             <div class="col-sm-10">
                 <input type="text" value=""
                    name="subject" id="subject"
                    class="form-control"
-                  placeholder="Введіть назву іспиту">
+                  placeholder="{% trans "Enter name subject" %}">
                 <span class="error">{{ errors.subject }}</span>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="teacher" class="col-sm-2 control-label">Викладач*</label>
+            <label for="teacher" class="col-sm-2 control-label">{% trans "Teacher" %}*</label>
 
             <div class="col-sm-10">
                 <input type="text" value=""
                        name="teacher" id="teacher"
                        class="form-control"
-                      placeholder="Введіть назву іспиту">
+                      placeholder="{% trans "Enter name teacher" %}">
                 <span class="error">{{ errors.teacher }}</span>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="exam_group" class="col-sm-2 control-label">Група*</label>
+            <label for="exam_group" class="col-sm-2 control-label">{% trans "Group" %}*</label>
             <div class="col-sm-10">
                 <select name="exam_group" id="exam_group"
                   class="form-control">
-                <option value="">Виберіть групу</option>
+                <option value="">{% trans "Selecte group" %}</option>
                 {% for group in groups %}
                 <option value="{{ group.id }}">{{ group.title }}</option>
                 {% endfor %}
@@ -64,23 +66,23 @@
         </div>
 
         <div class="form-group {% if errors.notes %}has-error{% endif %}">
-            <label for="notes" class="col-sm-2 control-label">Додаткові Нотатки</label>
+            <label for="notes" class="col-sm-2 control-label">{% trans "Extra notes" %}</label>
             <div class="col-sm-10">
                 <textarea name="notes"
                           id="notes"
                           class="form-control"
-                          placeholder="Тут можна написати про себе і свої інтереси"></textarea>
+                          placeholder="{% trans "Here you can write about yourself and your interests" %}"></textarea>
             </div>
         </div>
 
         <div class="form-group">
             <label for="" class="col-sm-2 control-label"></label>
             <div>
-                <input type="submit" value="Додати"
+                <input type="submit" value="{% trans "Add" %}"
                        name="add_button" class="btn btn-primary">
 
                 <button type="submit" name="cancel_button"
-                        class="btn btn-link">Скасувати</button>
+                        class="btn btn-link">{% trans "Cancel" %}</button>
             </div>
         </div>
     </form>

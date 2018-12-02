@@ -6,6 +6,8 @@ from ..models.groups import Group
 from ..models.students import Student
 from django.forms import ModelForm
 from django.views.generic import UpdateView, DeleteView
+from django.utils.translation import ugettext as _
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -49,7 +51,7 @@ def groups_add(request):
 
             title = request.POST.get('title', '').strip()
             if not title:
-                errors['title'] = u"Назва гурпи є обов'язкова"
+                errors['title'] = _(u"The name of the group is mandatory")
             else:
                 data['title'] = title
 
@@ -91,8 +93,8 @@ class GroupUpdateForm(ModelForm):
 
         # add buttons
         self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            Submit('add_button', _(u"Save"), css_class="btn btn-primary"),
+            Submit('cancel_button', _(u"Cancel"), css_class="btn btn-link"),
         )
 
 
@@ -104,11 +106,12 @@ class GroupUpdateView(UpdateView):
     # success_url = '/'
     @property
     def success_url(self):
-        return u"%s?status_message=Групу успішно збережено!" % reverse('groups')
+        return u"%s?status_message=%s" % (reverse('groups'),
+                                          _(u"Student updated successfully!"))
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u"%s?status_message=Редагування групи відмінено!" % reverse('groups'))
+            return HttpResponseRedirect(u"%s?status_message=%s" % (reverse('groups'), _(u"Student update canceled!")))
         else:
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
 
@@ -119,5 +122,5 @@ class GroupDeleteView(DeleteView):
 
     @property
     def success_url(self):
-        return u"%s?status_message=Групу успішно видалено!" % reverse('groups')
+        return u"%s?status_message=%s" % (reverse('groups'), _(u"Student deleted successfully!"))
 

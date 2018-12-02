@@ -6,6 +6,10 @@ from students.views.journal import JournalView
 from students.views.groups import GroupUpdateView, GroupDeleteView
 from students.views.exam import ExamUpdateView, ExamDeleteView
 
+js_info_dict = {
+    'packages': ('students',),
+}
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'studentsdb.views.home', name='home'),
@@ -32,6 +36,9 @@ urlpatterns = patterns('',
     url(r'^exam/add/$', 'students.views.exam.exam_add', name='exam_add'),
     url(r'^exam/(?P<pk>\d+)/edit/$', ExamUpdateView.as_view(), name='edit_exam'),
     url(r'^exam/(?P<pk>\d+)/delete/$', ExamDeleteView.as_view(), name='delete_exam'),
+
+    # Javascript Catalog File
+    url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict),
 
     # Contact Admin Form
     url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin', name='contact_admin')

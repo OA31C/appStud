@@ -6,6 +6,9 @@ from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm
 from django.views.generic import UpdateView, DeleteView
+from django.utils.translation import ugettext as _
+
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from crispy_forms.bootstrap import FormActions
@@ -32,34 +35,34 @@ def exam_add(request):
             # validate user input
             date_and_time = request.POST.get('date_and_time', '').strip()
             if not date_and_time:
-                errors['date_and_time'] = u"Дата і час є обов'язковою"
+                errors['date_and_time'] = _(u"Date and time are required")
             else:
                 try:
                     datetime.strptime(date_and_time, '%Y-%m-%d %X') #1983-10-10 21:30:00
                 except Exception:
-                    errors['date_and_time'] = u"Введіть коректний формат дати та часу"
+                    errors['date_and_time'] = _(u"Enter the correct date and time format")
                 else:
                     data['date_and_time'] = date_and_time
 
             subject = request.POST.get('subject', '').strip()
             if not subject:
-                errors['subject'] = u"Предмет є обов'язковим"
+                errors['subject'] = _(u"Subject is required")
             else:
                 data['subject'] = subject
 
             teacher = request.POST.get('teacher', '').strip()
             if not teacher:
-                errors['teacher'] = u"Викладач є обов'язковим"
+                errors['teacher'] = _(u"Teacher is required")
             else:
                 data['teacher'] = teacher
 
             exam_group = request.POST.get('exam_group', '').strip()
             if not exam_group:
-                errors['exam_group'] = u"Оберіть групу для іспитів"
+                errors['exam_group'] = _(u"Select the group for the exam")
             else:
                 groups = Group.objects.filter(pk=exam_group)
                 if len(groups) != 1:
-                    errors['exam_group'] = u"Оберіть коректну групу"
+                    errors['exam_group'] = _(u"Select the correct group")
                 else:
                     data['exam_group'] = groups[0]
             # TODO: add validation for all other fields
@@ -105,8 +108,8 @@ class ExamUpdateForm(ModelForm):
 
         # add buttons
         self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
+            Submit('add_button', _(u"Save"), css_class="btn btn-primary"),
+            Submit('cancel_button', _(u"Cancel"), css_class="btn btn-link"),
         )
 
 
@@ -117,11 +120,11 @@ class ExamUpdateView(UpdateView):
     # success_url = '/'
     @property
     def success_url(self):
-        return u"%s?status_message=Іспит успішно збережено!" % reverse('exam')
+        return u"%s?status_message=%s" % (reverse('exam'), _(u"Exam updated successfully!"))
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
-            return HttpResponseRedirect(u"%s?status_message=Редагування групи відмінено!" % reverse('exam'))
+            return HttpResponseRedirect(u"%s?status_message=%s" % (reverse('exam'), _(u"Student update canceled!")))
         else:
             return super(ExamUpdateView, self).post(request, *args, **kwargs)
 
@@ -132,4 +135,4 @@ class ExamDeleteView(DeleteView):
 
     @property
     def success_url(self):
-        return u"%s?status_message=Іспит успішно видалено!" % reverse('exam')
+        return u"%s?status_message=%s" % (reverse('exam'), _(u"Student deleted successfully!"))
