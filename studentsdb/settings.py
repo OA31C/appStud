@@ -56,7 +56,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'registration',
+    'social.apps.django_app.default',
     'students',
+    'studentsdb',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,8 +119,28 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'students/static')
 MEDIA_URL = 'static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'students/static', 'media')
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request",                                                                             "studentsdb.context_processors.students_proc",
-                                                                             "students.context_processor.groups_processor",)
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request",
+                                                                            "social.apps.django_app.context_processors.backends",
+                                                                             "social.apps.django_app.context_processors.login_redirect",
+                                                                             "studentsdb.context_processors.students_proc",
+                                                                             "students.context_processor.groups_processor",
+ )
+
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.facebook.FacebookOAuth2',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '2211384705807193'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'dd905bc0afa9a7fcb18c33b4ac06ec2c'
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'studentsdb', 'templates'),
+)
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = "auth_login"
 
 LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')
 
@@ -165,3 +188,5 @@ LOGGING = {
         }
     }
 }
+
+REGISTRATION_OPEN = True

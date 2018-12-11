@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms import ModelForm
 from django.views.generic import UpdateView, DeleteView
 from django.utils.translation import ugettext as _
+from django.contrib.auth.decorators import login_required
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -36,7 +37,7 @@ def students_list(request):
 
     return render(request, 'students/students_listing.html', context)
 
-
+@login_required
 def students_add(request):
     if request.method == "POST":
 

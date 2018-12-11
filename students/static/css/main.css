@@ -64,3 +64,9 @@ body .modal-admin {
 	width: 600px;
 	margin-left: 375px;
 }
+
+/* User Toolbar */
+#user-toolbar {
+	margin-top: 30px;
+	text-align: right;
+}
